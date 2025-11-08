@@ -56,7 +56,7 @@ const Profile = () => {
   if (!user) return null; 
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 py-10">
+    <div className="min-h-screen flex justify-center items-center bg-[#64b5f6] py-10">
       <div className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl rounded-2xl p-8 w-full max-w-md text-white">
         <h2 className="text-3xl font-bold text-center mb-6">My Profile</h2>
 
@@ -94,7 +94,7 @@ const Profile = () => {
 
           <button
             type="submit"
-            className="mt-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:scale-105 transition-transform"
+            className="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Update Profile
           </button>

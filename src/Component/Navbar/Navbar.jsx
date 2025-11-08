@@ -18,7 +18,7 @@ const Navbar = () => {
   );
 
   // Links only for logged-in users
-  const privateLinks = user && (
+  const privateLinks = user ? (
     <>
       <li>
         <NavLink to="/addtransaction" className="flex items-center gap-2">
@@ -36,22 +36,19 @@ const Navbar = () => {
         </NavLink>
       </li>
     </>
-  );
+  ) : null;
 
   return (
-    <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 shadow-lg sticky top-0 z-50">
-      <div className="navbar text-white px-4 md:px-8 max-w-7xl mx-auto">
+    <div className="bg-[#1e88e5]/90 shadow-lg sticky top-0 z-50 backdrop-white-lg">
+      <div className="navbar text-white px-4 md:px-8 max-w-8xl mx-auto">
         {/* Left - Logo */}
         <div className="navbar-start">
-          <Link
-            to="/"
-            className="text-2xl font-bold tracking-wide flex items-center gap-2"
-          >
-            Expense Tracker
+          <Link to="/" className="text-2xl font-bold tracking-wide flex items-center gap-2">
+            Fin <span className="text-green-600">Ease</span>
           </Link>
         </div>
 
-        {/* Center - Menu Links */}
+        {/* Center - Menu Links (Desktop) */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-6 text-white font-medium">
             {publicLinks}
@@ -63,11 +60,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+              <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full border-2 border-white flex items-center justify-center bg-white/10">
                   {user.photoURL ? (
                     <img
@@ -82,23 +75,20 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 text-gray-700"
-              >
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 text-gray-700">
                 <li className="border-b pb-2 mb-2">
                   <p className="font-semibold">{user.displayName || "User"}</p>
                   <p className="text-xs text-gray-500">{user.email}</p>
                 </li>
                 <li>
-                  <Link to="/profile">
+                  <Link to="/profile" className="flex items-center gap-2">
                     <FaUser /> Profile
                   </Link>
                 </li>
                 <li>
                   <button
                     onClick={logOut}
-                    className="flex items-center gap-2 text-red-500 font-semibold hover:bg-red-50"
+                    className="flex items-center gap-2 text-red-500 font-semibold hover:bg-red-50 w-full px-2 py-1 rounded"
                   >
                     <IoLogOut /> Logout
                   </button>
@@ -108,7 +98,7 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="btn btn-sm rounded-full bg-white text-purple-600 font-semibold hover:bg-gray-100 transition flex items-center gap-2"
+              className="bg-white text-green-600 font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition flex items-center gap-2"
             >
               <IoLogIn /> Sign In
             </Link>

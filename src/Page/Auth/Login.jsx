@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400">
+    <div className="min-h-screen flex items-center justify-center bg-[#64b5f6]">
       <div className="backdrop-blur-md bg-white/10 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Welcome Back 
@@ -48,19 +48,19 @@ const Login = () => {
             type="email"
             name="email"
             placeholder="Email Address"
-            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-300"
+            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0496ff]"
             required
           />
           <input
             type="password"
             name="password"
             placeholder="Password"
-            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-300"
+            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0496ff]"
             required
           />
           <button
             type="submit"
-            className="mt-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:scale-105 transition-transform"
+            className="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login
           </button>
