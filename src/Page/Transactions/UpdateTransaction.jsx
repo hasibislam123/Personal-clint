@@ -28,7 +28,7 @@ const UpdateTransaction = () => {
          try {
             const token = await user.getIdToken(); // <-- Firebase token
 
-            const res = await axios.get(`http://localhost:3000/transactions/${id}`, {
+            const res = await axios.get(`https://a10-server-five.vercel.app/transactions/${id}`, {
                headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -68,7 +68,7 @@ const UpdateTransaction = () => {
          const token = await user.getIdToken(); // <-- Firebase token
 
          const res = await axios.put(
-            `http://localhost:3000/transactions/${id}`,
+            `https://a10-server-five.vercel.app/transactions/${id}`,
             { ...formData, userEmail: user.email },
             { headers: { Authorization: `Bearer ${token}` } } // <-- token pathano
          );
@@ -88,7 +88,7 @@ const UpdateTransaction = () => {
    if (loading) return <p className="text-center mt-10">Loading...</p>;
 
    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900">
          <form
             onSubmit={handleSubmit}
             className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"

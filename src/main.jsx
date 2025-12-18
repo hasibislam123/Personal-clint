@@ -15,6 +15,8 @@ import PrivateRoute from "./Routes/PrivateRoutes.jsx";
 import View from "./Component/View/View.jsx";
 import Reports from "./Page/Reports/Reports.jsx";
 import Error from "./Page/Error/Error.jsx";
+import About from "./Page/About/About.jsx";
+import Contact from "./Page/Contact/Contact.jsx";
 
 const router = createBrowserRouter([
    {
@@ -86,6 +88,8 @@ const router = createBrowserRouter([
                <Error></Error>
             ),
          },
+         { path: "about", element: <About /> },
+         { path: "contact", element: <Contact /> }
       ],
    },
 ]);

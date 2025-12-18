@@ -30,7 +30,7 @@ const View = () => {
          try {
             // 1. Fetch single transaction
              
-            const res = await axios.get(`http://localhost:3000/transactions/${id}`, {
+            const res = await axios.get(`https://a10-server-five.vercel.app/transactions/${id}`, {
                headers: {
                   authorization: `Bearer ${user.accessToken}`,
                   
@@ -45,7 +45,7 @@ const View = () => {
             // 2. Fetch category total
             if (category && userEmail) {
                // **NOTE: This is the backend API call that needs fixing in your Node/Express code**
-               const totalRes = await axios.get(`http://localhost:3000/transactions/category-total`, {
+               const totalRes = await axios.get(`https://a10-server-five.vercel.app/transactions/category-total`, {
                   params: { category, userEmail },
                });
 

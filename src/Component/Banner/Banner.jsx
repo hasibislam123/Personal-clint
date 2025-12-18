@@ -25,7 +25,7 @@ const Banner = () => {
 
     return (
         <section
-            className="bg-cover bg-center text-white py-20"
+            className="bg-cover bg-center text-white py-20 "
             style={{ backgroundImage: `url(${bannerImage})` }}
         >
             <div className="container mx-auto flex flex-col-reverse md:flex-row items-center px-4 md:px-0">
@@ -38,10 +38,10 @@ const Banner = () => {
                         Manage your income and expenses effortlessly, track your savings, and reach your financial goals faster with FinEase.
                     </p>
                     <div className="flex gap-4">
-                        <button className="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                        <button className="bg-[#1e88e5] text-white font-semibold px-6 py-3 rounded-lg transition hover:bg-[#1976d2]">
                             Get Started
                         </button>
-                        <button className="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-green-600 transition">
+                        <button className="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-[#1e88e5] transition">
                             Learn More
                         </button>
                     </div>

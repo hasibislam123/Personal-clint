@@ -58,8 +58,8 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#64b5f6]">
-      <div className="backdrop-blur-md bg-white/10 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
+    <div className="min-h-screen  flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 py-12 px-4">
+      <div className="backdrop-blur-md bg-[#64b5f6] p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Create an Account
           <img src={signup} alt="" />
@@ -105,7 +105,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+            className="bg-white text-[#64b5f6] font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Sign Up
           </button>

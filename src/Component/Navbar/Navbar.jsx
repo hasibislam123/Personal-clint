@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router";
 import { GoHomeFill } from "react-icons/go";
-import { FaPlusCircle, FaListAlt, FaUserCircle, FaUser } from "react-icons/fa";
+import { FaPlusCircle, FaListAlt, FaUserCircle, FaUser, FaInfoCircle, FaEnvelope } from "react-icons/fa";
 import { IoLogIn, IoLogOut, IoMenu, IoClose } from "react-icons/io5";
 import { TbReportSearch } from "react-icons/tb";
 import { AuthContext } from "../../Contexts/AuthContext";
@@ -74,6 +74,72 @@ const Navbar = () => {
                         }
                     >
                         Home
+                    </span>
+                </NavLink>
+            </li>
+
+            <li>
+                <NavLink
+                    to="/about"
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                        isMobile
+                            ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
+                                ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                            }`
+                            : `relative flex items-center justify-center w-28 h-10 group ${isActive ? "border-b-2 border-white" : ""
+                            }`
+                    }
+                >
+                    <FaInfoCircle
+                        className={
+                            isMobile
+                                ? "text-xl"
+                                : "text-2xl text-white transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:scale-0"
+                        }
+                    />
+                    <span
+                        className={
+                            isMobile
+                                ? ""
+                                : "absolute text-sm font-semibold text-white opacity-0 scale-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100"
+                        }
+                    >
+                        About
+                    </span>
+                </NavLink>
+            </li>
+
+            <li>
+                <NavLink
+                    to="/contact"
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                        isMobile
+                            ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
+                                ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                            }`
+                            : `relative flex items-center justify-center w-28 h-10 group ${isActive ? "border-b-2 border-white" : ""
+                            }`
+                    }
+                >
+                    <FaEnvelope
+                        className={
+                            isMobile
+                                ? "text-xl"
+                                : "text-2xl text-white transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:scale-0"
+                        }
+                    />
+                    <span
+                        className={
+                            isMobile
+                                ? ""
+                                : "absolute text-sm font-semibold text-white opacity-0 scale-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100"
+                        }
+                    >
+                        Contact
                     </span>
                 </NavLink>
             </li>
@@ -202,7 +268,7 @@ const Navbar = () => {
                         to="/"
                         className="text-2xl font-bold tracking-wide flex items-center gap-2 ml-2 lg:ml-0"
                     >
-                        Fin <span className="text-orange-400">Ease</span>
+                        Fin <span className="text-white">Ease</span>
                     </Link>
                 </div>
 
@@ -276,7 +342,7 @@ const Navbar = () => {
                     ) : (
                         <Link
                             to="/login"
-                            className="hidden lg:flex bg-white text-green-600 font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 dark:bg-green-600 dark:text-white dark:hover:bg-green-500 transition items-center gap-2"
+                            className="hidden lg:flex bg-white text-[#1e88e5] font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 dark:bg-[#1e88e5] dark:text-white dark:hover:bg-[#6ebbff] transition items-center gap-2"
                         >
                             <img className="h-8 w-12" src={signin} alt="" /> Sign In
                         </Link>

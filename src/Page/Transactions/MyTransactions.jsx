@@ -9,8 +9,8 @@ import { MdOutlineCategory, MdOutlineCalendarToday, MdOutlineDelete, MdOutlineEd
 import { HashLoader } from "react-spinners"; 
 import nofolder from "../../assets/nofolder.svg"; 
 
-const ACCENT_COLOR = "text-cyan-600";
-const ACCENT_HEX_COLOR = "#0891b2"; 
+const ACCENT_COLOR = "black";
+const ACCENT_HEX_COLOR = "#0496ff"; 
 const LIGHT_BG = "bg-[#caf0f8]";
 const LIGHT_BG_TEXT = "text-gray-900";
 
@@ -20,14 +20,13 @@ const MyTransactions = () => {
     const [pageLoading, setPageLoading] = useState(true); 
     const navigate = useNavigate();
 
-    // Fetch transactions with token
     const fetchTransactions = async () => {
         if (user?.email) {
             setPageLoading(true);
             try {
-                const token = await user.getIdToken(); // Firebase token
+                const token = await user.getIdToken();
                 const res = await axios.get(
-                    `http://localhost:3000/transactions?email=${user.email}`,
+                    `https://a10-server-five.vercel.app/transactions?email=${user.email}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -54,7 +53,6 @@ const MyTransactions = () => {
         }
     }, [user, authLoading]);
 
-    // Delete transaction
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
             title: "Are you sure?",
@@ -72,7 +70,7 @@ const MyTransactions = () => {
             try {
                 const token = await user.getIdToken();
                 const res = await axios.delete(
-                    `http://localhost:3000/transactions/${id}?userEmail=${user.email}`,
+                    `https://a10-server-five.vercel.app/transactions/${id}?userEmail=${user.email}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -117,7 +115,7 @@ const MyTransactions = () => {
     }
 
     return (
-        <div className={`min-h-screen  py-12 px-4 sm:px-6 lg:px-8 ${LIGHT_BG_TEXT}`}>
+        <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 `}>
              <Toaster position="top-right" />
             <h2 className={`text-3xl sm:text-4xl md:text-5xl ${ACCENT_COLOR} font-extrabold text-center mb-10 tracking-wider`}>
                 My Transactions 
@@ -128,90 +126,76 @@ const MyTransactions = () => {
                     <img className="h-50 w-50" src={nofolder} alt="No transactions" />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
                     {transactions.map((t) => (
                         <div
                             key={t._id}
-                            className={`relative overflow-hidden rounded-2xl p-6 
-                                border border-opacity-40 backdrop-blur-sm transition-all duration-500 hover:scale-[1.03]
-                                shadow-lg hover:shadow-cyan-500/30 
-                                bg-white 
-                                ${t.type === "Income"
-                                    ? "border-green-500/50"
-                                    : "border-red-500/50"
-                                }`}
+                            className="relative flex flex-col bg-white border-[1.5px] border-gray-100 rounded-[32px] p-8 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden"
                         >
-                            <div className={`absolute top-0 left-0 w-full h-1 ${t.type === "Income" ? "bg-green-600" : "bg-red-600"}`}></div>
-
-                            <div className={`${LIGHT_BG_TEXT} space-y-4`}> 
-                                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                                    <span
-                                        className={`px-3 py-0.5 text-xs font-bold rounded-full tracking-wider uppercase
-                                            ${t.type === "Income"
-                                                ? "bg-green-500 text-gray-900"
-                                                : "bg-red-500 text-gray-900"
-                                            }`}
-                                    >
-                                        {t.type}
-                                    </span>
-                                    <span className="text-gray-500 text-sm flex items-center gap-1">
-                                        <MdOutlineCalendarToday className="text-xs" />
-                                        {new Date(t.date).toLocaleDateString()}
-                                    </span>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-2xl font-bold text-slate-800">$</span>
+                                    <span className="text-5xl font-extrabold text-slate-800">{formatAmount(t.amount)}</span>
+                                    <span className="text-slate-500 font-medium ml-1">/mo</span>
                                 </div>
-
-                                <div>
-                                    <p className="text-sm font-light text-gray-600 flex items-center gap-1">
-                                        <MdOutlineCategory className={ACCENT_COLOR} /> {t.category}
-                                    </p>
-                                    <p className="text-lg font-semibold mt-1">
-                                        <span className="text-sm font-light text-gray-500 block">{t.userName}</span>
-                                        
-                                        <span
-                                            className={`text-3xl font-extrabold flex items-center gap-1 mt-1 
-                                                ${t.type === "Income" ? "text-green-700" : "text-red-700"}`}
-                                        >
-                                            <FaBangladeshiTakaSign className="text-2xl" /> 
-                                            {formatAmount(t.amount)}
-                                        </span>
-                                    </p>
+                                <div className="absolute top-4 -right-2">
+                                    <div className={`px-5 py-4 rounded-l-full font-black text-xl tracking-widest text-white shadow-lg ${t.type === "Income" ? "bg-gradient-to-r from-blue-400 to-blue-700" : "bg-gradient-to-r from-blue-700 to-blue-200"}`}>
+                                        {t.category.toUpperCase()}
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div className="mt-4 mb-8">
+                                <p className="text-slate-800 text-lg font-bold leading-tight mb-6">
+                                    Enjoy limitless use with interactive {t.type.toLowerCase()} options
+                                </p>
                                 
-                                {t.description && (
-                                    <p className="text-gray-600 text-sm line-clamp-2 pt-2 border-t border-gray-300">
-                                        {t.description}
-                                    </p>
-                                )}
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-rose-400 flex items-center justify-center">
+                                            <span className="text-rose-500 text-xs">✓</span>
+                                        </div>
+                                        <span className="text-slate-600 font-medium">Custom profile and more</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-rose-400 flex items-center justify-center">
+                                            <span className="text-rose-500 text-xs">✓</span>
+                                        </div>
+                                        <span className="text-slate-600 font-medium">{t.userName || "User"} analytics</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-rose-400 flex items-center justify-center">
+                                            <span className="text-rose-500 text-xs">✓</span>
+                                        </div>
+                                        <span className="text-slate-600 font-medium">{new Date(t.date).toLocaleDateString()}</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <div className="flex flex-col sm:flex-row justify-between pt-4 gap-2">
-                                    <button
-                                        onClick={() => handleUpdate(t._id)}
-                                        type="button" 
-                                        className="flex items-center justify-center w-full gap-1 bg-cyan-100 text-cyan-700 px-3 py-2 rounded-xl text-sm font-semibold hover:bg-cyan-500 hover:text-white transition duration-300"
-                                    >
-                                        <MdOutlineEdit /> Edit
-                                    </button>
-
-                                    <button
+                            <div className="mt-auto space-y-3">
+                                <button
+                                    onClick={() => handleUpdate(t._id)}
+                                    className="w-full py-4 rounded-3xl font-bold text-white text-lg transition-transform active:scale-95 shadow-md bg-[#1e88e5] text-white hover:bg-[#1976d2]"
+                                >
+                                    GET STARTED
+                                </button>
+                                
+                                <div className="flex gap-2">
+                                    <button 
                                         onClick={() => handleView(t._id)}
-                                        type="button" 
-                                        className="flex items-center justify-center w-full gap-1 bg-gray-200 text-gray-700 px-3 py-2 rounded-xl text-sm font-semibold hover:bg-gray-400 transition duration-300"
+                                        className="flex-1 py-2 text-xs font-bold text-slate-400 hover:text-blue-600 uppercase tracking-tighter transition-colors"
                                     >
-                                        <MdOutlineVisibility /> View
+                                        View Details
                                     </button>
-
-                                    <button
+                                    <button 
                                         onClick={() => handleDelete(t._id)}
-                                        type="button" 
-                                        className="flex items-center justify-center w-full gap-1 bg-red-100 text-red-700 px-3 py-2 rounded-xl text-sm font-semibold hover:bg-red-500 hover:text-white transition duration-300"
+                                        className="flex-1 py-2 text-xs font-bold text-slate-400 hover:text-rose-400 uppercase tracking-tighter transition-colors"
                                     >
-                                        <MdOutlineDelete /> Delete
+                                        Remove Plan
                                     </button>
                                 </div>
                             </div>
-                        </div>  
-                          
-                          
+                        </div>
                     ))}
                 </div>
             )}

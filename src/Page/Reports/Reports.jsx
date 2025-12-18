@@ -14,7 +14,7 @@ const ACCENT_COLOR = "#00BFA5";
 const POSITIVE_COLOR = "#00FF00";
 const NEGATIVE_COLOR = "#FF6B6B";
 const CARD_BG = "#FFFFFF";
-const ACCENT_HEX_COLOR = "#00BFA5";
+const ACCENT_HEX_COLOR = "#0496ff";
 
 const COLORS = [ACCENT_COLOR, "#FFBB28", "#AA336A", "#0088FE", "#FF8042", "#00C49F"];
 
@@ -58,7 +58,7 @@ const Reports = () => {
       }
       setLoading(true);
       try {
-         const res = await axios.get("http://localhost:3000/transactions", {
+         const res = await axios.get("https://a10-server-five.vercel.app/transactions", {
             params: { email: user.email },
             headers: { Authorization: `Bearer ${user.token}` } // <- token added
          });
@@ -213,7 +213,7 @@ const Reports = () => {
 
    const FullReportsView = (
       <div style={fullReportsStyle}>
-         <h2 style={{ color: ACCENT_COLOR, borderBottom: '2px solid #EEEEEE', paddingBottom: '0.5rem' }}>Detailed Financial Reports</h2>
+         <h2 className="text-[#1e88e5]" style={{  borderBottom: '2px solid #EEEEEE', paddingBottom: '0.5rem' }}>Detailed Financial Reports</h2>
 
          <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ marginRight: '1rem', fontWeight: 'bold' }}>Select Month: </label>
@@ -225,7 +225,7 @@ const Reports = () => {
             />
             <button
                onClick={() => setMonthFilter("")}
-               style={{ marginLeft: '0.75rem', padding: '0.5rem 1rem', backgroundColor: ACCENT_COLOR, border: 'none', borderRadius: '0.25rem', cursor: 'pointer', color: 'black', fontWeight: 'bold' }}
+               style={{ marginLeft: '0.75rem', padding: '0.5rem 1rem', color: 'white', backgroundColor: '#1e88e5', border: 'none', borderRadius: '0.25rem', cursor: 'pointer',  fontWeight: 'bold' }}
             >
                Reset Filter
             </button>
@@ -234,7 +234,7 @@ const Reports = () => {
          <div style={chartsContainerStyle}>
 
             <div style={chartBoxStyle}>
-               <h3 style={{ color: ACCENT_COLOR }}>Category Totals</h3>
+               <h3 className="text-[#1e88e5]" >Category Totals</h3>
                <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                      <Pie
@@ -261,7 +261,7 @@ const Reports = () => {
             </div>
 
             <div style={chartBoxStyle}>
-               <h3 style={{ color: ACCENT_COLOR }}>Monthly Totals (Net)</h3>
+               <h3 className="text-[#1e88e5]">Monthly Totals (Net)</h3>
                <ResponsiveContainer width="80%" height={300}>
                   <BarChart data={barData} margin={{ top: 20, right: 10, left: 40, bottom: 5 }}>
                      <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
@@ -285,7 +285,8 @@ const Reports = () => {
    );
 
    return (
-      <div style={reportsContainerStyle}>
+      <div className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900"
+       style={reportsContainerStyle}>
          {FinancialSummaryCard}
          {FullReportsView}
       </div>

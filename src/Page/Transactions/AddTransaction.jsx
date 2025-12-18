@@ -5,7 +5,7 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import addpost from '../../assets/add-post.svg';
 
 const BG_COLOR = "bg-[#caf0f8]";
-const ACCENT_COLOR = "text-cyan-600";
+const ACCENT_COLOR = "white";
 const TEXT_COLOR = "text-gray-900";
 
 const AddTransaction = () => {
@@ -46,7 +46,7 @@ const AddTransaction = () => {
             const token = await user.getIdToken();
 
             const res = await axios.post(
-                "http://localhost:3000/transactions",
+                "https://a10-server-five.vercel.app/transactions",
                 transactionData,
                 {
                     headers: {
@@ -73,11 +73,11 @@ const AddTransaction = () => {
     };
 
     return (
-        <div className={`xl:py-6 flex justify-center items-center min-h-screen  ${TEXT_COLOR}`}>
+        <div className={`xl:py-6 flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900  ${TEXT_COLOR}`}>
             <Toaster />
             <form
                 onSubmit={handleSubmit}
-                className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md" 
+                className="bg-[#64b5f6] p-8 rounded-xl shadow-2xl w-full max-w-md" 
             >
                 <h2 className={`text-3xl ${ACCENT_COLOR} font-bold text-center mb-6`}> 
                     Add Transaction
@@ -181,10 +181,7 @@ const AddTransaction = () => {
 
                 <button
                     type="submit"
-                    className="group w-full rounded-2xl bg-gradient-to-br from-[#ccff33] via-[#9ef01a] to-[#70e000]
-                      hover:from-[#38b000] hover:via-green-700 hover:to-green-600 
-                      p-1 transition ease-in-out transform hover:scale-105 hover:rotate-1 hover:brightness-125 
-                      hover:shadow-lg hover:shadow-green-700/50"
+                    className="group w-full rounded-2xl bg-[#1e88e5] text-white p-1 "
                 >
                     <div className="px-6 py-2 backdrop-blur-xl bg-black/20 rounded-xl font-semibold w-full h-full flex justify-center items-center gap-2 text-white">
                         <svg
@@ -192,7 +189,7 @@ const AddTransaction = () => {
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth="2"
-                            className="w-6 h-6 stroke-white group-hover:stroke-green-200"
+                            className="w-6 h-6 stroke-white "
                         >
                             <path
                                 strokeLinecap="round"

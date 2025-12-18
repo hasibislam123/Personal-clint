@@ -15,7 +15,7 @@ const StaticSections = () => {
          </div>
 
          {/* Why Financial Planning Matters Section */}
-         <div className="bg-yellow-100 text-yellow-900 p-6 rounded-2xl shadow-lg">
+         <div className="bg-[#bbdefb] text-yellow-900 p-6 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Why Financial Planning Matters</h2>
             <p>
                Financial planning helps you achieve long-term goals, reduces money-related stress,

@@ -41,8 +41,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#64b5f6]">
-      <div className="backdrop-blur-md bg-white/10 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+      <div className="backdrop-blur-md bg-[#64b5f6] bg-opacity-20  p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
 
           Log In
@@ -77,7 +77,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+            className="bg-white text-[#2196f3] font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Login
           </button>
