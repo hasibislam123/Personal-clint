@@ -59,8 +59,8 @@ const Profile = () => {
    if (!user) return null;
 
    return (
-      <div className="min-h-screen flex justify-center items-center bg-[#caf0f8] py-10">
-         <div className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl rounded-2xl p-8 w-full max-w-md text-black">
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 py-10">
+         <div className="bg-blue-300 backdrop-blur-lg border border-white/20 shadow-2xl rounded-2xl p-8 w-full max-w-md text-black">
             <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">My Profile</h2>
 
             {loading ? (
@@ -104,10 +104,7 @@ const Profile = () => {
                      <button
                         type="submit"
                         disabled={loading}
-                        className="group w-full rounded-2xl bg-gradient-to-br from-[#ccff33] via-[#9ef01a] to-[#70e000]
-      hover:from-[#38b000] hover:via-green-700 hover:to-green-600 
-      p-1 transition ease-in-out transform hover:scale-105 hover:rotate-1 hover:brightness-125 
-      hover:shadow-lg hover:shadow-green-700/50 disabled:opacity-50"
+                        className="group w-full rounded-2xl bg-[#1e88e5] p-1 "
                      >
                         <div className="px-6 py-2 backdrop-blur-xl bg-black/20 rounded-xl font-semibold w-full h-full flex justify-center items-center gap-2 text-white">
                            <svg

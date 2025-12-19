@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; 
+import { FaEye, FaEyeSlash, FaRegEnvelope, FaLock, FaUser, FaLink } from "react-icons/fa"; 
 import toast from "react-hot-toast";
-import signup from '../../assets/signup.svg'
+import loginBanner from "../../assets/loginBanner1.png";
 
 const Register = () => {
   const { createUser, googleSignIn, updateUserProfile, setUser } = useContext(AuthContext);
@@ -21,36 +21,40 @@ const Register = () => {
 
     try {
       const result = await createUser(email, password);
+      
+      // প্রোফাইল আপডেট হওয়া পর্যন্ত অপেক্ষা করবে
       await updateUserProfile({
         displayName: name,
         photoURL: photoURL,
       });
 
-      //  Update AuthContext state
+      // Context আপডেট নিশ্চিত করা
       setUser({
         ...result.user,
         displayName: name,
         photoURL: photoURL,
       });
 
-      toast.success("Registration successful! ");
-      navigate("/"); // redirect to homepage
+      toast.success("Registration successful!");
+      
+      // এখানে সরাসরি হোম পেজে পাঠাবে
+      navigate("/", { replace: true });
+      
     } catch (err) {
-      console.error(err);
       setError(err.message);
-      toast.error("Registration failed!");
+      toast.error(err.message || "Registration failed!");
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
       const googleUser = await googleSignIn();
-
-      //  Update AuthContext state
       setUser(googleUser.user);
-
       toast.success("Signed in with Google!");
-      navigate("/");
+      
+      // এখানেও হোম পেজে রিডাইরেক্ট
+      navigate("/", { replace: true });
+      
     } catch (err) {
       setError(err.message);
       toast.error("Google Sign-in failed!");
@@ -58,82 +62,123 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen  flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 py-12 px-4">
-      <div className="backdrop-blur-md bg-[#64b5f6] p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">
-          Create an Account
-          <img src={signup} alt="" />
-        </h2>
+    <div className="min-h-screen bg-[#f3f4f6] flex items-center justify-center p-4">
+      <div className="bg-white rounded-[32px] shadow-xl flex flex-col md:flex-row w-full max-w-6xl overflow-hidden min-h-[700px]">
+        
+        <div className="w-full md:w-1/2 p-8 lg:p-14 flex flex-col justify-center">
+          <div className="flex items-center gap-2 mb-8">
+            <div className="grid grid-cols-3 gap-1">
+              {[...Array(9)].map((_, i) => (
+                <div key={i} className="w-1.5 h-1.5 bg-black rounded-full"></div>
+              ))}
+            </div>
+            <h1 className="text-2xl font-bold text-gray-800">FinEase</h1>
+          </div>
 
-        <form onSubmit={handleRegister} className="flex flex-col gap-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0496ff]"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0496ff]"
-            required
-          />
-          <input
-            type="text"
-            name="photoURL"
-            placeholder="Photo URL (optional)"
-            className="px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0496ff]"
-          />
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Create an Account</h2>
+          <p className="text-gray-500 mb-8">Join us and start managing your finances.</p>
 
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              className="px-4 py-3 w-full rounded-lg bg-white/20 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0496ff]"
-              required
-            />
-            <span
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-3 text-[#03045e] cursor-pointer"
+          <form onSubmit={handleRegister} className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Full Name</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><FaUser /></span>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#8bc8fd] focus:ring-1 focus:ring-[#1e88e5] outline-none transition"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email address</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><FaRegEnvelope /></span>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email address"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#8bc8fd] focus:ring-1 focus:ring-[#1e88e5] outline-none transition"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Photo URL (optional)</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><FaLink /></span>
+                <input
+                  type="text"
+                  name="photoURL"
+                  placeholder="https://example.com/photo.jpg"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#8bc8fd] focus:ring-1 focus:ring-[#1e88e5] outline-none transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Password</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><FaLock /></span>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  className="w-full pl-12 pr-12 py-3 rounded-xl border border-gray-200 focus:border-[#8bc8fd] focus:ring-1 focus:ring-[#1e88e5] outline-none transition"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-[#1e88e5] hover:bg-[#0185f8] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-100 transition duration-300 mt-2"
             >
-              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
-            </span>
+              Sign Up
+            </button>
+          </form>
+
+          <div className="flex items-center my-6">
+            <div className="flex-grow h-px bg-gray-200"></div>
+            <span className="px-3 text-gray-400 text-sm">OR</span>
+            <div className="flex-grow h-px bg-gray-200"></div>
           </div>
 
           <button
-            type="submit"
-            className="bg-white text-[#64b5f6] font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+            onClick={handleGoogleLogin}
+            type="button"
+            className="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 text-gray-700 font-semibold py-3 rounded-xl hover:bg-gray-50 transition duration-300 shadow-sm"
           >
-            Sign Up
+            <FcGoogle size={22} /> Continue with Google
           </button>
-        </form>
 
-        {error && (
-          <p className="text-red-300 text-sm mt-2 text-center">{error}</p>
-        )}
+          {error && <p className="text-red-500 text-sm mt-4 text-center font-medium">{error}</p>}
 
-        <p className="text-center text-gray-200 mt-4">
-          Already have an account?
-          <Link to="/login" className="text-yellow-300 hover:underline ml-1">
-            Login
-          </Link>
-        </p>
-
-        <div className="flex items-center my-5">
-          <div className="flex-grow h-px bg-white/30"></div>
-          <span className="px-3 text-gray-200 text-sm">OR</span>
-          <div className="flex-grow h-px bg-white/30"></div>
+          <p className="mt-6 text-center text-gray-600">
+            Already have an account?
+            <Link to="/login" className="text-[#1e88e5] font-bold hover:underline ml-1"> Login</Link>
+          </p>
         </div>
 
-        <button
-          onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-3 bg-white text-gray-700 font-medium py-3 rounded-lg hover:bg-gray-100 transition"
-        >
-          <FcGoogle size={22} /> Continue with Google
-        </button>
+        <div className="hidden md:block w-1/2 bg-[#1e88e5] relative">
+          <img 
+            src={loginBanner} 
+            alt="Registration Banner" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+
       </div>
     </div>
   );
