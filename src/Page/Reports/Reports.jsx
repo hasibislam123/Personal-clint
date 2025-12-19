@@ -123,18 +123,17 @@ const Reports = () => {
    const waveGraphData = barData.slice(-6);
 
 
-   const reportsContainerStyle = { padding: '2rem', minHeight: '100vh', color: '#333333', fontFamily: 'Roboto, sans-serif' };
+   const reportsContainerStyle = { minHeight: '100vh', color: '#333333', fontFamily: 'Roboto, sans-serif' };
    const cardStyle = { backgroundColor: CARD_BG, borderRadius: '1rem', padding: '1.5rem', width: '100%', maxWidth: '400px', boxShadow: `0 0.5rem 1.5rem rgba(0, 191, 165, 0.1)`, margin: '1.5rem auto', transition: 'transform 0.3s ease', color: '#333' };
    const headerStyle = { display: 'flex', alignItems: 'center', marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: `1px solid #EEEEEE` };
    const iconStyle = { fontSize: '1.5rem', color: ACCENT_COLOR, marginRight: '0.75rem', display: 'flex', alignItems: 'center' };
    const dataGridStyle = { display: 'flex', justifyContent: 'space-around', padding: '1rem 0', borderBottom: '1px solid #EEEEEE' };
    const dataItemStyle = { textAlign: 'center', padding: '0 1rem', flex: 1 };
-   const valueStyle = { fontSize: '1.8rem', fontWeight: '700', color: '#333333', marginBottom: '0.25rem' };
+   const valueStyle = { fontWeight: '700', color: '#333333', marginBottom: '0.25rem' };
    const changeStyle = (isPositive) => ({ color: isPositive ? POSITIVE_COLOR : NEGATIVE_COLOR, fontWeight: '600', fontSize: '0.875rem' });
    const fullReportsStyle = { marginTop: '2rem', padding: '1.5rem', backgroundColor: CARD_BG, borderRadius: '1rem', boxShadow: '0 0.5rem 1.5rem rgba(0, 0, 0, 0.1)', color: '#333' };
    const chartsContainerStyle = { display: "flex", justifyContent: "space-around", flexWrap: "wrap", gap: '1rem', padding: '1rem 0' };
-   const chartBoxStyle = { backgroundColor: '#F9F9F9', padding: '1rem', borderRadius: '0.75rem', margin: '0.5rem', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)', flex: '1 1 300px', minWidth: '300px', color: '#333' };
-
+   const chartBoxStyle = { backgroundColor: '#F9F9F9', padding: '1rem', borderRadius: '0.75rem', margin: '0.5rem', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)', flex: '1 1 300px', color: '#333' };
    const GradientFill = () => (
       <defs>
          <linearGradient id="waveGradient" x1="0" y1="0" x2="0" y2="1">
@@ -162,12 +161,12 @@ const Reports = () => {
          <div style={dataGridStyle}>
             <div style={dataItemStyle}>
                <p style={{ margin: 0, fontSize: '0.875rem', color: '#666' }}>Revenue</p>
-               <div style={valueStyle}>{formatCurrency(currentRevenue)}</div>
+               <div style={valueStyle} className="text-xl sm:text-2xl">{formatCurrency(currentRevenue)}</div>
                <div style={changeStyle(isRevenuePositive)}>{revenueChange}</div>
             </div>
             <div style={{ ...dataItemStyle, borderLeft: '1px solid #EEEEEE' }}>
                <p style={{ margin: 0, fontSize: '0.875rem', color: '#666' }}>Costs</p>
-               <div style={valueStyle}>{formatCurrency(currentCosts)}</div>
+               <div style={valueStyle} className="text-xl sm:text-2xl">{formatCurrency(currentCosts)}</div>
                <div style={changeStyle(isCostsPositive)}>{costsChange}</div>
             </div>
          </div>
@@ -233,7 +232,7 @@ const Reports = () => {
 
          <div style={chartsContainerStyle}>
 
-            <div style={chartBoxStyle}>
+            <div style={chartBoxStyle} className="sm:min-w-[300px]">
                <h3 className="text-[#1e88e5]" >Category Totals</h3>
                <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
@@ -245,7 +244,27 @@ const Reports = () => {
                         cy="50%"
                         outerRadius={100}
                         fill="#8884d8"
-                        label
+                        label={({ cx, cy, midAngle, outerRadius, percent }) => {
+                          const RADIAN = Math.PI / 180;
+                          // Position of the label
+                          const radius = 25 + outerRadius;
+                          const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                          const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                          
+                          return (
+                            <text 
+                              x={x} 
+                              y={y} 
+                              fill="#333" 
+                              textAnchor={x > cx ? 'start' : 'end'} 
+                              dominantBaseline="central"
+                              className="text-[10px] sm:text-xs"
+                            >
+                              {`${(percent * 100).toFixed(0)}%`}
+                            </text>
+                          );
+                        }}
+                        labelLine={false}
                      >
                         {pieData.map((entry, index) => (
                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -260,7 +279,7 @@ const Reports = () => {
                </ResponsiveContainer>
             </div>
 
-            <div style={chartBoxStyle}>
+            <div style={chartBoxStyle} className="sm:min-w-[300px]">
                <h3 className="text-[#1e88e5]">Monthly Totals (Net)</h3>
                <ResponsiveContainer width="80%" height={300}>
                   <BarChart data={barData} margin={{ top: 20, right: 10, left: 40, bottom: 5 }}>
@@ -285,7 +304,7 @@ const Reports = () => {
    );
 
    return (
-      <div className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900"
+      <div className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 p-1 sm:p-8"
        style={reportsContainerStyle}>
          {FinancialSummaryCard}
          {FullReportsView}

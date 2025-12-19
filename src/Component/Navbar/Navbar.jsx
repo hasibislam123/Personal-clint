@@ -52,7 +52,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         isMobile
                             ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
-                                ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                ? "bg-blue-100 text-blue-400 dark:bg-gray-800 dark:text-white"
                                 : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                             }`
                             : `relative flex items-center justify-center w-28 h-10 group ${isActive ? "border-b-2 border-white" : ""
@@ -85,7 +85,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         isMobile
                             ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
-                                ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                ? "bg-blue-100 text-blue-400 dark:bg-gray-800 dark:text-white"
                                 : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                             }`
                             : `relative flex items-center justify-center w-28 h-10 group ${isActive ? "border-b-2 border-white" : ""
@@ -118,7 +118,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         isMobile
                             ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
-                                ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                ? "bg-blue-100 text-blue-400 dark:bg-gray-800 dark:text-white"
                                 : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                             }`
                             : `relative flex items-center justify-center w-28 h-10 group ${isActive ? "border-b-2 border-white" : ""
@@ -153,7 +153,7 @@ const Navbar = () => {
                             className={({ isActive }) =>
                                 isMobile
                                     ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
-                                        ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                        ? "bg-blue-100 text-blue-400 dark:bg-cyan-800 dark:text-white"
                                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                                     }`
                                     : `relative flex items-center justify-center w-36 h-10 group ${isActive ? "border-b-2 border-white" : ""
@@ -186,7 +186,7 @@ const Navbar = () => {
                             className={({ isActive }) =>
                                 isMobile
                                     ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
-                                        ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                        ? "bg-cyan-100 text-blue-700 dark:bg-gray-800 dark:text-white"
                                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                                     }`
                                     : `relative flex items-center justify-center w-40 h-10 group ${isActive ? "border-b-2 border-white" : ""
@@ -219,7 +219,7 @@ const Navbar = () => {
                             className={({ isActive }) =>
                                 isMobile
                                     ? `flex items-center gap-2 px-3 py-2 rounded-md font-semibold ${isActive
-                                        ? "bg-cyan-100 text-cyan-700 dark:bg-cyan-800 dark:text-white"
+                                        ? "bg-cyan-100 text-blue-400 dark:bg-gray-800 dark:text-white"
                                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                                     }`
                                     : `relative flex items-center justify-center w-40 h-10 group ${isActive ? "border-b-2 border-white" : ""

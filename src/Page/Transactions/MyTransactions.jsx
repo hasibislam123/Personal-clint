@@ -134,12 +134,12 @@ const MyTransactions = () => {
                         >
                             <div className="flex justify-between items-start mb-6">
                                 <div className="flex items-baseline gap-1">
-                                    <span className="text-2xl font-bold text-slate-800">$</span>
-                                    <span className="text-5xl font-extrabold text-slate-800">{formatAmount(t.amount)}</span>
+                                    <span className="text-xl sm:text-2xl font-bold text-slate-800">$</span>
+                                    <span className="text-3xl sm:text-5xl font-extrabold text-slate-800">{formatAmount(t.amount)}</span>
                                     <span className="text-slate-500 font-medium ml-1">/mo</span>
                                 </div>
                                 <div className="absolute top-4 -right-2">
-                                    <div className={`px-5 py-4 rounded-l-full font-black text-xl tracking-widest text-white shadow-lg ${t.type === "Income" ? "bg-gradient-to-r from-blue-400 to-blue-700" : "bg-gradient-to-r from-blue-700 to-blue-200"}`}>
+                                    <div className={`px-3 py-2 sm:px-5 sm:py-4 rounded-l-full font-black text-sm sm:text-xl tracking-widest text-white shadow-lg ${t.type === "Income" ? "bg-gradient-to-r from-blue-400 to-blue-700" : "bg-gradient-to-r from-blue-700 to-blue-200"}`}>
                                         {t.category.toUpperCase()}
                                     </div>
                                 </div>
