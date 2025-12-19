@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import { FaEye, FaEyeSlash, FaRegEnvelope, FaLock } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc"; // Google আইকন ইমপোর্ট করা হয়েছে
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Contexts/AuthContext";
 import toast from "react-hot-toast";
 import loginBanner from "../../assets/loginBanner1.png";
 
 const Login = () => {
-   const { signInUser, googleSignIn } = useContext(AuthContext); // googleSignIn যুক্ত করা হয়েছে
+   const { signInUser, googleSignIn } = useContext(AuthContext); 
    const [error, setError] = useState("");
    const [showPassword, setShowPassword] = useState(false);
    const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Login = () => {
    };
 
    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center p-10">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center p-0 sm:p-10">
          {/* Main Container */}
          <div className="bg-white rounded-[32px] shadow-xl flex flex-col md:flex-row w-full max-w-5xl overflow-hidden min-h-[600px]">
 

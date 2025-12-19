@@ -22,13 +22,13 @@ const Register = () => {
     try {
       const result = await createUser(email, password);
       
-      // প্রোফাইল আপডেট হওয়া পর্যন্ত অপেক্ষা করবে
+     
       await updateUserProfile({
         displayName: name,
         photoURL: photoURL,
       });
 
-      // Context আপডেট নিশ্চিত করা
+      // Context 
       setUser({
         ...result.user,
         displayName: name,
@@ -37,7 +37,6 @@ const Register = () => {
 
       toast.success("Registration successful!");
       
-      // এখানে সরাসরি হোম পেজে পাঠাবে
       navigate("/", { replace: true });
       
     } catch (err) {
@@ -52,7 +51,6 @@ const Register = () => {
       setUser(googleUser.user);
       toast.success("Signed in with Google!");
       
-      // এখানেও হোম পেজে রিডাইরেক্ট
       navigate("/", { replace: true });
       
     } catch (err) {
@@ -62,10 +60,10 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center p-0 sm:p-4">
       <div className="bg-white rounded-[32px] shadow-xl flex flex-col md:flex-row w-full max-w-6xl overflow-hidden min-h-[700px]">
         
-        <div className="w-full md:w-1/2 p-8 lg:p-14 flex flex-col justify-center">
+        <div className="w-full md:w-1/2 p-4 sm:p-8 lg:p-14 flex flex-col justify-center">
           <div className="flex items-center gap-2 mb-8">
             <div className="grid grid-cols-3 gap-1">
               {[...Array(9)].map((_, i) => (
