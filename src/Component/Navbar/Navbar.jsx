@@ -360,7 +360,7 @@ const Navbar = () => {
                                     logOut();
                                     closeMenu();
                                 }}
-                                className="flex items-center gap-2 text-red-500 font-semibold bg-red-200 hover:bg-red-300 dark:bg-red-900/50 dark:hover:bg-red-900 dark:text-red-400 w-full px-2 py-2 rounded-md"
+                                className="flex items-center gap-2 text-[#1e88e5] font-semibold bg-blue-200 hover:bg-blue-300 dark:bg-blue-900/50 dark:hover:bg-blue-900 dark:text-blue-400 w-full px-2 py-2 rounded-md"
                             >
                                 <img className="h-8 w-12" src={logout} alt="" /> Logout
                             </button>
@@ -368,7 +368,7 @@ const Navbar = () => {
                             <Link
                                 to="/login"
                                 onClick={closeMenu}
-                                className="flex items-center gap-2 text-green-600 font-semibold bg-green-200 hover:bg-green-300 dark:bg-green-900/50 dark:hover:bg-green-900 dark:text-green-400 w-full px-2 py-2 rounded-md"
+                                className="flex items-center gap-2 text-[#1e88e5] font-semibold bg-blue-200 hover:bg-blue-300 dark:bg-blue-900/50 dark:hover:bg-blue-900 dark:text-blue-400 w-full px-2 py-2 rounded-md"
                             >
                                 <IoLogIn className="text-xl" /> Sign In
                             </Link>
